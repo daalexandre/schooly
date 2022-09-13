@@ -1,0 +1,71 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+      <div class="mb-3 col">
+        <label class="form-label" for="first-name">Nome: </label>
+        <input
+          id="first-name"
+          type="text"
+          class="form-control"
+          formControlName="firstName"
+          required
+        />
+      </div>
+      <div class="mb-3 col">
+        <label class="form-label" for="last-name">Sobrenome: </label>
+        <input
+          id="last-name"
+          type="text"
+          class="form-control"
+          formControlName="lastName"
+        />
+      </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="email">E-mail: </label>
+    <input
+      id="email"
+      type="text"
+      class="form-control"
+      formControlName="email"
+    />
+    <ng-container *ngIf="studentForm.get('email') as email">
+      <div class="invalid-feedback" *ngIf="email.touched && email.errors?.email">
+        E-mail inválido
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="row">
+    <div class="mb-3 col">
+      <label class="form-label" for="birthDate">Data de nascimento: </label>
+      <input
+        id="birthDate"
+        type="date"
+        class="form-control"
+        formControlName="birthDate"
+      />
+      <ng-container *ngIf="studentForm.get('email') as email">
+        <div class="invalid-feedback" *ngIf="email.touched && email.errors?.required">
+          A data de nascimento é inválida
+        </div>
+      </ng-container>
+    </div>
+    <div class="mb-3 col">
+      <label class="form-label" for="educationLevelId">Escolaridade: </label>
+      <select
+        class="form-select"
+        id="educationLevel"
+        formControlName="educationLevel"
+      >
+        <option selected [value]="educationLevel.Elementary">Infantil</option>
+        <option [value]="educationLevel.Middle">Fundamental</option>
+        <option [value]="educationLevel.Secondary">Médio</option>
+        <option [value]="educationLevel.Superior">Superior</option>
+      </select>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary me-2">Salvar</button>
+  <button type="submit" class="btn btn-danger" (click)="goBack()">Cancelar</button>
+</form>

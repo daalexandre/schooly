@@ -1,0 +1,21 @@
+<div class="alert alert-secondary p-1 mb-1" *ngFor="let student of students">
+  <div class="row d-flex  align-items-center">
+    <div class="col">
+      <a
+        class="nav-link btn btn-link text-dark"
+        [routerLink]="['/view', 'students', student.id]"
+      >
+        <em class="bi bi-pencil-square"></em>
+      </a>
+    </div>
+    <div class="col">{{ student.firstName }}</div>
+    <div class="col">{{ student.lastName }}</div>
+    <div class="col">{{ student.email }}</div>
+    <div class="col">{{ student.birthdate | date: 'dd/MM/yyyy' }}</div>
+    <div class="col">
+      <button class="btn btn-danger" (click)="delete(student.id)">
+        Apagar
+      </button>
+    </div>
+  </div>
+</div>
